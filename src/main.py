@@ -3,7 +3,6 @@ import json
 from arbeitnow_jobs import get_arbeitnow_jobs
 from remotive_jobs import get_remotive_jobs
 from remoteok_jobs import get_remoteok_jobs
-
 from telegram_alert import send_telegram_message
 
 SEEN_FILE = "seen_jobs.json"
@@ -22,7 +21,6 @@ def save_seen_jobs(seen_jobs):
         json.dump(seen_jobs, file)
 
 
-# Collect jobs from all sources
 jobs = []
 jobs.extend(get_arbeitnow_jobs())
 jobs.extend(get_remotive_jobs())
@@ -32,11 +30,15 @@ print(f"Total Jobs Found: {len(jobs)}")
 
 seen_jobs = load_seen_jobs()
 
+print("Seen Jobs:", seen_jobs)
+
 for job in jobs:
+
+    print("Checking:", job["title"])
 
     if job["id"] not in seen_jobs:
 
-        print(f"Sending Job: {job['title']}")
+        print("Sending:", job["title"])
 
         message = f"""
 🚀 New AI Job Found
