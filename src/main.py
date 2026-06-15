@@ -1,4 +1,5 @@
 import json
+print("DEBUG VERSION 2")
 
 from arbeitnow_jobs import get_arbeitnow_jobs
 from remotive_jobs import get_remotive_jobs
