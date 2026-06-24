@@ -4,6 +4,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+
 def send_telegram_message(message):
 
     bot_token = os.getenv("BOT_TOKEN")
@@ -16,7 +17,8 @@ def send_telegram_message(message):
         json={
             "chat_id": chat_id,
             "text": message
-        }
+        },
+        timeout=30
     )
 
     return response.json()
